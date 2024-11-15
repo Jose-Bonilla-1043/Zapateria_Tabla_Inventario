@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Empleado</h2>
+        <!-- Tarjeta -->
+        <div class="card">
+            <div class="card-body">
+              <form action="/editarEmpleado/" method="POST"> {% csrf_token %}
+              <!-- Campo para el código del empleado -->
+            <div class="form-group">
+              <input type="text" id="txtid_empleado" name="txtid_empleado" class="form-control"
+                     minlength="1" maxlength="6" value="{{ elempleado.id_empleado }}" readonly required>
+            </div>
+      
+            <!-- Campo para la cantidad actual -->
+            <div class="form-group py-3">
+              <input type="text" id="textnombre" name="textnombre" class="form-control"
+                    max="100"  value="{{elempleado.nombre}}"  required>
+            </div>
+      
+            <!-- Campo para la cantidad mínima -->
+            <div class="form-group py-2">
+              <input type="txt" id="textapellido" name="textapellido" class="form-control"
+                    max="100" value="{{elempleado.apellido}}" required >
+            </div>
+      
+            <!-- Campo para la fecha de actualización -->
+            <div class="form-group py-3">
+              <input type="date" id="datehorario" name="datehorario" class="form-control"
+                     value="{{elempleado.horario}}" required>
+            </div>
+      
+            <!-- Campo para la ubicación -->
+            <div class="form-group py-2">
+              <input type="num" id="numsalario" name="numsalario" class="form-control"
+                   value="{{elempleado.salario}}" max="100" required>
+            </div>
+      
+            <!-- Campo para el historial -->
+            <div class="form-group py-3">
+              <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                    value="{{elempleado.telefono}}" max="255" required>
+            </div>
+
+                <!-- Botón para guardar los cambios -->
+                <div class="form-group py-2">
+                  <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

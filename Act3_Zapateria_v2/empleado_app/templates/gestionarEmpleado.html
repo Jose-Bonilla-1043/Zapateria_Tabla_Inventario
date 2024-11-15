@@ -1,0 +1,94 @@
+<!--Falta modificar-->
+
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+  <!-- La columna izquierda -->
+  <div class="col-sm-12 col-md-4 col-lg-4 xl-4">
+    <h1>Registrar Empleado</h1>
+    <div class="card">
+        <div class="card-body">
+          <form action="registrarEmpleado/" method="POST">
+            {% csrf_token %}
+            
+              <!-- Campo para el código del empleado -->
+              <div class="form-group">
+                <input type="text" id="txtid_empleado" name="txtid_empleado" class="form-control"
+                       minlength="1" maxlength="6" value="{{ elempleado.id_empleado }}" readonly required>
+              </div>
+        
+              <!-- Campo para la cantidad actual -->
+              <div class="form-group py-3">
+                <input type="text" id="textnombre" name="textnombre" class="form-control"
+                      max="100"  value="{{elempleado.nombre}}"  required>
+              </div>
+        
+              <!-- Campo para la cantidad mínima -->
+              <div class="form-group py-2">
+                <input type="txt" id="textapellido" name="textapellido" class="form-control"
+                      max="100" value="{{elempleado.apellido}}" required >
+              </div>
+        
+              <!-- Campo para la fecha de actualización -->
+              <div class="form-group py-3">
+                <input type="date" id="datehorario" name="datehorario" class="form-control"
+                       value="{{elempleado.horario}}" required>
+              </div>
+        
+              <!-- Campo para la ubicación -->
+              <div class="form-group py-2">
+                <input type="num" id="numsalario" name="numsalario" class="form-control"
+                     value="{{elempleado.salario}}" max="100" required>
+              </div>
+        
+              <!-- Campo para el historial -->
+              <div class="form-group py-3">
+                <input type="text" id="txttelefono" name="txttelefono" class="form-control"
+                      value="{{elempleado.telefono}}" max="255" required>
+              </div>
+      
+            <!-- Botón de envío -->
+            <div class="form-group py-2">
+              <button type="submit" class="btn btn-primary">Guardar empleado</button>
+            </div>
+          </form>
+        </div>
+      </div>      
+    </div>
+
+  <!-- La columna derecha -->
+  <div class="col-sm-12 col-md-8 col-lg-8 xl-8">
+    <h1>Listado Inventario</h1>
+    <!-- Tabla -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id Inventario</th>
+          <th scope="col">Cantidad actual</th>
+          <th scope="col">Cantidad minima</th>
+          <th scope="col">Fecha de actualizacion</th>
+          <th scope="col">Ubicacion</th>
+          <th scope="col">Historial</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in elinventario %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.id_inventario }}</td>
+          <td>{{ i.cantidad_actual }}</td>
+          <td>{{ i.cantidad_minima }}</td>
+          <td>{{ i.fecha_actualizacion }}</td>
+          <td>{{ i.ubicacion }}</td>
+          <td>{{ i.historial }}</td>
+          <td><a href="seleccionarInventario/{{ i.id_inventario }}" class="btn btn-info">Editar</a></td> 
+          <td><a href="borrarInventario/{{ i.id_inventario }}" class="btn btn-danger">Borrar</a></td> 
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
