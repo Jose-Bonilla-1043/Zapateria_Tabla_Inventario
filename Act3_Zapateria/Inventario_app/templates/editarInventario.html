@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Materia</h2>
+        <!-- Tarjeta -->
+        <div class="card">
+            <div class="card-body">
+              <form action="/editarInventario/" method="POST"> {% csrf_token %}
+              <!-- Campo para el código del inventario -->
+            <div class="form-group">
+              <input type="text" id="txtid_inventario" name="txtid_inventario" class="form-control"
+                     minlength="1" maxlength="6" value="{{ elinventario.id_inventario }}" readonly required>
+            </div>
+      
+            <!-- Campo para la cantidad actual -->
+            <div class="form-group py-3">
+              <input type="text" id="numcantidad_actual" name="numcantidad_actual" class="form-control"
+                    max="100"  value="{{elinventario.cantidad_actual}}"  required>
+            </div>
+      
+            <!-- Campo para la cantidad mínima -->
+            <div class="form-group py-2">
+              <input type="number" id="numcantidad_minima" name="numcantidad_minima" class="form-control"
+                     min="1" max="100" value="10" value="{{cantidad_minima}}" required >
+            </div>
+      
+            <!-- Campo para la fecha de actualización -->
+            <div class="form-group py-3">
+              <input type="date" id="datefecha_actual" name="datefecha_actual" class="form-control"
+                     value="{{elinventario.fecha_actualizacion}}" required>
+            </div>
+      
+            <!-- Campo para la ubicación -->
+            <div class="form-group py-2">
+              <input type="text" id="txtubicacion" name="txtubicacion" class="form-control"
+                   value="{{elinventario.ubicacion}}" max="100" required>
+            </div>
+      
+            <!-- Campo para el historial -->
+            <div class="form-group py-3">
+              <input type="text" id="txthistorial" name="txthistorial" class="form-control"
+                    value="{{elinventario.historial}}" max="255">
+            </div>
+
+                <!-- Botón para guardar los cambios -->
+                <div class="form-group py-2">
+                  <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
