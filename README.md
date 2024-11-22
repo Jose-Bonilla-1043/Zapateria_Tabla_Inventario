@@ -1,5 +1,5 @@
-# Zapateria_Tabla_Inventario
-Tabla del inventario de la zapateria 
+# Zapateria_Tablas
+Tablas de la zapateria 
 
 
 
